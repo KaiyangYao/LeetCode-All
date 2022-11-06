@@ -6,7 +6,7 @@ import java.util.*;
  * 
  * 2022/11/05
  */
-class Solution {
+class Solution205 {
     public boolean isIsomorphic(String s, String t) {
         Map<Character, Character> toT = new HashMap<>();
         Map<Character, Character> toS = new HashMap<>();

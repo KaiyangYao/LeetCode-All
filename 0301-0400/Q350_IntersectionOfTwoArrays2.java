@@ -7,7 +7,7 @@ import java.util.*;
  * 
  * 2022/11/05
  */
-class Solution {
+class Solution350 {
     public int[] intersect(int[] nums1, int[] nums2) {
         if (nums1.length > nums2.length) {
             return intersect(nums2, nums1);
