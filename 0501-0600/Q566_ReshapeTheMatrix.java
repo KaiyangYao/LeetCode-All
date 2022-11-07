@@ -6,7 +6,7 @@
  * 
  * 2022/11/06
  */
-class Solution {
+class Solution566 {
     public int[][] matrixReshape(int[][] mat, int r, int c) {
         int m = mat.length;
         int n = mat[0].length;

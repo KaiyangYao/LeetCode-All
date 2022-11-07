@@ -2,6 +2,8 @@ import java.util.*;
 
 /*
  * O(n^2) time | O(n) space
+ * 
+ * 2022/11/06
  */
 class Solution899 {
     public String orderlyQueue(String s, int k) {

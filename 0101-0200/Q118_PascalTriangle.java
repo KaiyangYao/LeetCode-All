@@ -5,7 +5,7 @@ import java.util.*;
  * 
  * 2022/11/06
  */
-class Solution {
+class Solution118 {
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> answer = new ArrayList<List<Integer>>();
         
