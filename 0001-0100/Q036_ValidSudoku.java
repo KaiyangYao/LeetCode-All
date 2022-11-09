@@ -3,7 +3,7 @@
  * 
  * 2022/11/07
  */
-class Solution36 {
+class Solution036 {
     public boolean isValidSudoku(char[][] board) {
         int[][] rows = new int[9][10];
         int[][] cols = new int[9][10];

@@ -5,7 +5,7 @@
  * 
  * 2022/11/08
  */
-class Solution {
+class Solution383 {
     public boolean canConstruct(String ransomNote, String magazine) {
         int m = ransomNote.length();
         int n = magazine.length();

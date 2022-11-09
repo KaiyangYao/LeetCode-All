@@ -3,9 +3,11 @@
  * 
  * O(m+n) time | O(1) space
  * 
+ * Similar: #2
+ * 
  * 2022/11/06
  */
-class Solution21 {
+class Solution021 {
     public class ListNode {
          int val;
          ListNode next;
@@ -14,30 +16,29 @@ class Solution21 {
          ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode prehead = new ListNode(-1);
-        ListNode curr = prehead;
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode pre = new ListNode(-1);
+        ListNode curr = pre;
         
-        while (l1 != null && l2 != null) {
-            if (l1.val < l2.val) {
-                curr.next = l1;
-                l1 = l1.next;
+        while (list1 != null && list2 != null) {
+            if (list1.val < list2.val) {
+                curr.next = new ListNode(list1.val);
+                list1 = list1.next;
             } else {
-                curr.next = l2;
-                l2 = l2.next;
+                curr.next = new ListNode(list2.val);
+                list2 = list2.next;
             }
             curr = curr.next;
         }
         
-        if (l1 != null) {
-            curr.next = l1;
+        if (list1 != null) {
+            curr.next = list1;
+        }
+        if (list2 != null) {
+            curr.next = list2;
         }
         
-        if (l2 != null) {
-            curr.next = l2;
-        }
-        
-        return prehead.next;
+        return pre.next;
     }
 }
 

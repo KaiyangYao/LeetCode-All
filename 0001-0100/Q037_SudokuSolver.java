@@ -4,7 +4,7 @@
  * 2022/11/07
  */
 
-class Solution37V2 {
+class Solution037V2 {
     int[][] row = new int[9][9];
     int[][] col = new int[9][9];
     int[][] box = new int[9][9];

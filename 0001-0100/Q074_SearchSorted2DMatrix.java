@@ -10,7 +10,7 @@
  * coordinates moving (O(m+n) time in worse case, O(1) in best case)
  * https://leetcode.cn/problems/search-a-2d-matrix/solutions/688381/zuo-biao-zhou-fa-er-wei-shu-zu-zhong-de-nxfc8/
  */
-class Solution74 {
+class Solution074 {
     public boolean searchMatrix(int[][] matrix, int target) {
         int m = matrix.length;
         int n = matrix[0].length;

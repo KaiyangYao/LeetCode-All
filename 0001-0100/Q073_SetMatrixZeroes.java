@@ -1,8 +1,10 @@
 /*
  * O(m+n) time
  * O(1) space! (use first row and first col to track 0)
+ * 
+ * 2022/11/07
  */
-class Solution73 {
+class Solution073 {
     public void setZeroes(int[][] matrix) {
         int rowLength = matrix.length;
         int colLength = matrix[0].length;
