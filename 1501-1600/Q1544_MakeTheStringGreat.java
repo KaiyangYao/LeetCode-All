@@ -3,6 +3,8 @@
  * 
  * O(n) time | O(n) space
  * 
+ * Similar: 1047
+ * 
  * 2022/11/08
  */
 class Solution1544 {
