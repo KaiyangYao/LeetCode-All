@@ -7,7 +7,7 @@ import java.util.*;
  * 
  * 2022/11/11
  */
-class Solution102 {
+ class Solution102 {
     public class TreeNode {
         int val;
         TreeNode left;
@@ -26,7 +26,7 @@ class Solution102 {
         Queue<TreeNode> queue = new ArrayDeque<>();
         
         if (root != null) {
-            queue.add(root);
+            queue.offer(root);
         }
         
         while (!queue.isEmpty()) {

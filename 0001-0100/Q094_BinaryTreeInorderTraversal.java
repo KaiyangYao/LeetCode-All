@@ -6,7 +6,7 @@ import java.util.*;
  * O(n) time
  * O(n) space worst, O(log(n)) average   (stack)
  */
-class Solution144 {
+class Solution094 {
     public class TreeNode {
         int val;
         TreeNode left;
@@ -23,23 +23,23 @@ class Solution144 {
     /*
      * Iterative
      */
-    public List<Integer> preorderTraversal1(TreeNode root) {
+    public List<Integer> inorderTraversal1(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         Deque<TreeNode> stack = new ArrayDeque<>();
-        if (root != null) {
-            stack.push(root);
+        
+        TreeNode curr = root;
+        while (!stack.isEmpty() || curr != null) {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+            TreeNode node = stack.pop();
+            result.add(node.val);
+            if (node.right != null) {
+                curr = node.right;
+            }
         }
         
-        while (!stack.isEmpty()) {
-            TreeNode curr = stack.pop();
-            result.add(curr.val);
-            if (curr.right != null) {
-                stack.push(curr.right);
-            }
-            if (curr.left != null) {
-                stack.push(curr.left);
-            }
-        }
         return result;
     }
 
@@ -47,16 +47,16 @@ class Solution144 {
     /*
      * Recursive
      */
-    public List<Integer> preorderTraversal2(TreeNode root) {
+    public List<Integer> inorderTraversal2(TreeNode root) {
         List<Integer> result = new ArrayList<>();
-        preorder(root, result);
+        inorder(root, result);
         return result;
     }
     
-    private void preorder(TreeNode root, List<Integer> result) {
+    private void inorder(TreeNode root, List<Integer> result) {
         if (root == null) return;
+        inorder(root.left, result);
         result.add(root.val);
-        preorder(root.left, result);
-        preorder(root.right, result);
+        inorder(root.right, result);
     }
 }
