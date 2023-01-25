@@ -4,7 +4,7 @@
  * O(m+n) time (m = len(s), n = len(t))
  * O(1) space
  * 
- * 2022/11/15
+ * 2022/11/15, 2023/01/25
  */
 class Solution392 {
     public boolean isSubsequence(String s, String t) {

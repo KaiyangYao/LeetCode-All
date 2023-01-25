@@ -4,7 +4,7 @@ import java.util.*;
  * O(n) time  (the length of either string)
  * O(x) space (the number of diverse characters. [to be stored in a hashmap])
  * 
- * 2022/11/05
+ * 2022/11/05, 2023/01/25
  */
 class Solution205 {
     public boolean isIsomorphic(String s, String t) {
