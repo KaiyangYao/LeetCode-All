@@ -6,7 +6,7 @@ import java.util.*;
  * O(1) time for all methods
  * O(n) space
  * 
- * Same as Q155
+ * Also at LeetCode Q155
  * 
  * 2023/01/25
  */
