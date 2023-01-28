@@ -21,7 +21,26 @@ class Solution142 {
         }
     }
 
-    public ListNode detectCycle(ListNode head) {
+    // Personal Fav Solution
+    public ListNode detectCycle1(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                fast = head;
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                return slow;
+            }
+        }
+        return null;
+    }
+
+    public ListNode detectCycle2(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
         ListNode answer = head;

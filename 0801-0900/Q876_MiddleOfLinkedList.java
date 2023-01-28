@@ -16,7 +16,21 @@ class Solution876 {
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
-    public ListNode middleNode(ListNode head) {
+    public ListNode middleNode1(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    public ListNode middleNode2(ListNode head) {
         int length = 0;
         ListNode curr = head;
         while (curr != null) {
