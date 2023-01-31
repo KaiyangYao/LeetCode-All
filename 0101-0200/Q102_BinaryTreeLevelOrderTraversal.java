@@ -22,7 +22,7 @@ import java.util.*;
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> answer = new ArrayList<List<Integer>>();
+        List<List<Integer>> answer = new ArrayList<>();
         Queue<TreeNode> queue = new ArrayDeque<>();
         
         if (root != null) {
