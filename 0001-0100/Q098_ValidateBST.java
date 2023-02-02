@@ -31,23 +31,24 @@ class Solution098 {
             return false;
         }
         
+        // 注意这里要cast to long, 要不然int最小值-1过不了
         return isValidBST(node.left, min, (long) node.val-1) && isValidBST(node.right, (long) node.val+1, max);
     }
 
     // V2: val <= min || val >= max
-    // public boolean isValidBST2(TreeNode root) {
-    //     return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
-    // }
+    public boolean isValidBST2(TreeNode root) {
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
     
-    // private boolean isValidBST2(TreeNode node, long min, long max) {
-    //     if (node == null) {
-    //         return true;
-    //     }
+    private boolean isValidBST2(TreeNode node, long min, long max) {
+        if (node == null) {
+            return true;
+        }
         
-    //     if (node.val <= min || node.val >= max) {
-    //         return false;
-    //     }
+        if (node.val <= min || node.val >= max) {
+            return false;
+        }
         
-    //     return isValidBST2(node.left, min, node.val) && isValidBST2(node.right, node.val, max);
-    // }
+        return isValidBST2(node.left, min, node.val) && isValidBST2(node.right, node.val, max);
+    }
 }

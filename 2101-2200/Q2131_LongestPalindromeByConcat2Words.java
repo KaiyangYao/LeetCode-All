@@ -5,7 +5,7 @@ import java.util.*;
  * 
  * 2022/11/03
  */
-class Solution {
+class Solution2131 {
     public int longestPalindrome(String[] words) {
         Map<String, Integer> wordCount = new HashMap<>();
         for (String word: words) {
