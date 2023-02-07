@@ -3,9 +3,32 @@
  * 
  * O(n) time | O(n) space
  * 
- * 2022/11/13
+ * 2022/11/13, 2023/02/07
  */
-class Solution151 {
+
+ // Way better solution!
+ class Solution151_01 {
+    public String reverseWords(String s) {
+        StringBuilder sb = new StringBuilder();
+        s = s.trim();
+        int i = s.length() - 1;
+        int j = i;
+        while (i >= 0) {
+            while (i >= 0 && s.charAt(i) != ' ') {
+                i--;
+            }
+            sb.append(s.substring(i+1, j+1) + " ");
+            while (i >= 0 && s.charAt(i) == ' ') {
+                i--;
+            }
+            j = i;
+        }
+        return sb.toString().trim();
+    }
+}
+
+
+class Solution151_02 {
     public String reverseWords(String s) {
         if (s == null) return null;
 

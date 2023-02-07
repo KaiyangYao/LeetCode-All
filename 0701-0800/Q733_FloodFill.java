@@ -2,7 +2,7 @@ import java.util.*;
 
 /*
  * method 1. dfs (recursion)
- * method 2. sbfs (queue)
+ * method 2. bfs (queue)
  * 
  * size(image) = m * n
  * O(mn) time | O(mn) space for both
