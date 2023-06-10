@@ -7,31 +7,27 @@
  * 2023/02/01
  */
 class Solution695_01 {
-    int[][] directions = new int[][]{{1, -1, 0, 0}, {0, 0, 1, -1}};
+    int[][] directions = new int[][] {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
     public int maxAreaOfIsland(int[][] grid) {
-        int result = 0;
+        int max = 0;
         for (int r = 0; r < grid.length; r++) {
             for (int c = 0; c < grid[0].length; c++) {
                 if (grid[r][c] == 1) {
-                    result = Math.max(result, dfs(grid, r, c));
+                    max = Math.max(max, dfs(grid, r, c));
                 }
             }
         }
-        return result;
+        return max;
     }
 
     private int dfs(int[][] grid, int r, int c) {
-        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length) {
+        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || grid[r][c] == 0) {
             return 0;
         }
-        if (grid[r][c] == 0) {
-            return 0;
-        }
-
         grid[r][c] = 0;
         int count = 1;
-        for (int i = 0; i < 4; i++) {
-            count += dfs(grid, r + directions[0][i], c + directions[1][i]);
+        for (int[] direction: directions) {
+            count += dfs(grid, r + direction[0], c + direction[1]);
         }
         return count;
     }

@@ -10,25 +10,24 @@ import java.util.*;
  * 2023/02/01
  */
 class Solution733_01 {
+    int[][] directions = new int[][] {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
-        int preColor = image[sr][sc];
-        if (preColor == color) return image;
-        doFill(image, sr, sc, color, preColor);
+        if (image[sr][sc] == color) return image;
+        doFill(image, sr, sc, color, image[sr][sc]);
         return image;
     }
 
-    private void doFill(int[][] image, int sr, int sc, int color, int preColor) {
-        if (sr < 0 || sr >= image.length || sc < 0 || sc >= image[0].length) {
+    private void doFill(int[][] image, int sr, int sc, int color, int originColor) {
+        if (sr < 0 || sr >= image.length || sc < 0 || sc >= image[0].length || image[sr][sc] != originColor) {
             return;
         }
-        
-        if (image[sr][sc] == preColor) {
-            image[sr][sc] = color;
-            doFill(image, sr+1, sc, color, preColor);
-            doFill(image, sr-1, sc, color, preColor);
-            doFill(image, sr, sc+1, color, preColor);
-            doFill(image, sr, sc-1, color, preColor);
-        } 
+
+        image[sr][sc] = color;
+
+        for (int[] direction: directions) {
+            doFill(image, sr + direction[0], sc + direction[1], color, originColor);
+        }
     }
 }
 

@@ -52,7 +52,7 @@ class QJZ53_01 {
  */
 class QJZ53_02 {
     // 分两个部分，左边是顺序部分，右边是缺失部分。
-    // 如果nums[mid] == mid， 说明在左边，反之在右边
+    // 如果nums[mid] == mid， 说明在右边，反之在左边
     public int missingNumber(int[] nums) {
         int left = 0;
         int right = nums.length - 1;
