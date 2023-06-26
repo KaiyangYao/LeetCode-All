@@ -1,9 +1,7 @@
-/*
- * Two Pointer
- * 
+/* 
  * O(n) time | O(1) space
  * 
- * Similar: #80
+ * Similar: #27, #80
  * 
  * 2022/11/11
  */
