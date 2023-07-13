@@ -5,6 +5,8 @@
  * O(1) space
  * 
  * 2022/11/09
+ * 
+ * Same as Q67, Q415
  */
 class Solution002 {
     public class ListNode {

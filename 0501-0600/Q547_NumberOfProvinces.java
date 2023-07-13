@@ -69,3 +69,65 @@ class Solution547_02 {
         return province;
     }
 }
+
+
+/**
+ * Union Find
+ * 
+ * O(n^2) time | O(n) space
+ */
+class Solution547_03 {
+    public int findCircleNum(int[][] isConnected) {
+        int n = isConnected.length;
+        UnionFind uf = new UnionFind(n);
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < isConnected[0].length; j++) {
+                if (isConnected[i][j] == 1) {
+                    uf.union(i, j);
+                }
+            }
+        }
+        return uf.getGroups();
+    }
+
+
+    private class UnionFind {
+        private int[] parent;
+
+        public UnionFind(int n) {
+            parent = new int[n];
+            for (int i = 0; i < n; i++) {
+                parent[i] = i;
+            }
+        }
+
+        private int find(int x) {
+            while (parent[x] != x) {
+                parent[x] = parent[parent[x]];
+                x = parent[x];
+            }
+            return x;
+        }
+
+        private void union(int x, int y) {
+            int rootX = find(x);
+            int rootY = find(y);
+            parent[rootX] = parent[rootY];
+        }
+
+        private boolean isConnected(int x, int y) {
+            return find(x) == find(y);
+        }
+
+        private int getGroups() {
+            int count = 0;
+            for (int i = 0; i < parent.length; i++) {
+                if (parent[i] == i) {
+                    count++;
+                }
+            }
+            return count;
+        }
+    }
+}
+

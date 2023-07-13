@@ -41,3 +41,29 @@ class Solution797 {
         }
     }
 }
+
+/**
+ * Better Syntax
+ */
+class Solution797_02 {
+    int n;
+
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> curr = new ArrayList<>();
+        n = graph.length - 1;
+        dfs(0, curr, result, graph);
+        return result;
+    }
+
+    private void dfs(int i, List<Integer> curr, List<List<Integer>> result, int[][] graph) {
+        curr.add(i);
+        if (i == n) {
+            result.add(new ArrayList<>(curr));
+        }
+        for (int x : graph[i]) {
+            dfs(x, curr, result, graph);
+        }
+        curr.remove(curr.size() - 1);
+    }
+}
