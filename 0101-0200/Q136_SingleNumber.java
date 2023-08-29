@@ -1,5 +1,6 @@
 /**
  * 异或运算模板题
+ * Bit Manipulation
  * 
  * a^0 = 0
  * a^a = 0
