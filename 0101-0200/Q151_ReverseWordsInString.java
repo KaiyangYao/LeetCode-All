@@ -7,21 +7,21 @@
  */
 
  // Way better solution!
- class Solution151_01 {
+class Solution151_01 {
     public String reverseWords(String s) {
-        StringBuilder sb = new StringBuilder();
         s = s.trim();
-        int i = s.length() - 1;
-        int j = i;
-        while (i >= 0) {
-            while (i >= 0 && s.charAt(i) != ' ') {
-                i--;
+        StringBuffer sb = new StringBuffer();
+        int right = s.length() - 1;
+        int left = right;
+        while (left >= 0) {
+            while (left >= 0 && s.charAt(left) != ' ') {
+                left--;
             }
-            sb.append(s.substring(i+1, j+1) + " ");
-            while (i >= 0 && s.charAt(i) == ' ') {
-                i--;
+            sb.append(s.substring(left + 1, right + 1) + " ");
+            while (left >= 0 && s.charAt(left) == ' ') {
+                left--;
             }
-            j = i;
+            right = left;
         }
         return sb.toString().trim();
     }

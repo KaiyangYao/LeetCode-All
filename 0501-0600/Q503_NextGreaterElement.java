@@ -16,24 +16,16 @@ class Solution503 {
         int n = nums.length;
         Deque<Integer> stack = new ArrayDeque<>();
         int[] result = new int[n];
-        
+
+        stack.push(nums[n - 1]);
         for (int i = 2 * n - 2; i >= 0; i--) {
-            int currIndex = i % n;
-            int currNum = nums[currIndex];
-            if (stack.isEmpty()) {
-                stack.push(currNum);
-                result[currIndex] = -1;
-                continue;
-            }
-            
-            while (!stack.isEmpty() && stack.peek() <= currNum) {
+            while (!stack.isEmpty() && stack.peek() <= nums[i % n]) {
                 stack.pop();
             }
-            
-            result[currIndex] = stack.isEmpty() ? -1 : stack.peek();
-            stack.push(currNum);
+            result[i % n] = stack.isEmpty() ? -1 : stack.peek();
+            stack.push(nums[i % n]);
         }
-        
+
         return result;
     }
 }
