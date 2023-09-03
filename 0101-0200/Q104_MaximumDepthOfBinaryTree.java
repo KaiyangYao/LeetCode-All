@@ -30,10 +30,16 @@ class Solution104 {
         return Math.max(leftHeight, rightHeight) + 1;
     }
 
+    // dfs simplified
+    public int maxDepth2(TreeNode root) {
+        if (root == null) return 0;
+        return Math.max(maxDepth2(root.left), maxDepth2(root.right)) + 1;
+    }
+
     /*
      * bfs / iterative, queue
      */
-    public int maxDepth2(TreeNode root) {
+    public int maxDepth3(TreeNode root) {
         if (root == null) return 0;
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.offer(root);

@@ -1,6 +1,6 @@
 import java.util.*;
 /*
- * 1. DFS recursion
+ * 0/1. DFS recursion
  * 2. Iteration with stack (two stacks) [DFS]
  * 3. Iteration with queue (two queues) [BFS]
  * 
@@ -9,27 +9,19 @@ import java.util.*;
  * O(n) space
  * 
  * 2023/02/07
+ * 2023/09/02
  */
+class Solution112_00 {
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        if (root == null) return false;
+        if (targetSum == root.val && root.left == null && root.right == null) {
+            return true;
+        }
+        return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
+    }
+}
 
 class Solution112_01 {
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public boolean hasPathSum(TreeNode root, int targetSum) {
         return dfs(root, targetSum, 0);

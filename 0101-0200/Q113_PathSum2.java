@@ -7,53 +7,27 @@ import java.util.*;
  * O(n) space
  * 
  * 2023/02/07
+ * 2023/09/02
  */
 class Solution113 {
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
+    List<List<Integer>> result;
 
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
-    List<List<Integer>> result = new ArrayList<>();
-    int t;
-
-    public List<List<Integer>> pathSum(TreeNode root, int target) {
-        t = target;
-        dfs(root, 0, new ArrayList<Integer>()); 
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        result = new ArrayList<>();
+        findPath(root, targetSum, new ArrayList<>());
         return result;
     }
 
-    private void dfs(TreeNode node, int currSum, List<Integer> list) {
-        if (node == null) {
-            return;
-        }
-
-        currSum += node.val;
-
-        list.add(node.val);
-        if (currSum == t && node.left == null && node.right == null) {
-             // 注意这里要new ArrayList<>()！ 用来保存当前list的状态
-             // 如果存的list，因为list最后会被清空，所以最后result里面会是一堆空的list
+    private void findPath(TreeNode root, int targetSum, List<Integer> list) {
+        if (root == null) return;
+        list.add(root.val);
+        if (root.left == null && root.right == null && root.val == targetSum) {
+            // 注意这里要new ArrayList<>()！ 用来保存当前list的状态
+            // 如果存的list，因为list最后会被清空，所以最后result里面会是一堆空的list
             result.add(new ArrayList<>(list));
         }
-
-        dfs(node.left, currSum, list);
-        dfs(node.right, currSum, list);
-
+        findPath(root.left, targetSum - root.val, list);
+        findPath(root.right, targetSum - root.val, list);
         list.remove(list.size() - 1);
     }
 }
