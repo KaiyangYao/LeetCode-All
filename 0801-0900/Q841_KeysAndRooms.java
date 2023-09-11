@@ -44,22 +44,20 @@ class Solution841_02 {
     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
         int n = rooms.size();
         boolean[] visited = new boolean[n];
-        Queue<Integer> queue = new ArrayDeque<>();
-        queue.offer(0);
+        Queue<Integer> q = new ArrayDeque<>();
+        q.offer(0);
         int count = 1;
         visited[0] = true;
-        while (!queue.isEmpty()) {
-            List<Integer> keys = rooms.get(queue.poll());
-            for (int i = 0; i < keys.size(); i++) {
-                int x = keys.get(i);
-                if (!visited[x]) {
-                    visited[x] = true;
+        while (!q.isEmpty()) {
+            int currRoom = q.poll();
+            for (int key : rooms.get(currRoom)) {
+                if (!visited[key]) {
                     count++;
-                    queue.offer(x);
+                    q.offer(key);
+                    visited[key] = true;
                 }
             }
         }
-
         return count == n;
     }
 }
