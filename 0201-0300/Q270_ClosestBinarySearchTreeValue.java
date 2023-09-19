@@ -2,6 +2,7 @@
  * 2023/09/11
  */
 
+
 /**
  * Solution 1: Binary Search
  * O(log n) time | O(1) space

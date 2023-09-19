@@ -7,27 +7,49 @@ import java.util.*;
  * O(n) space (每个元素都被 push 入栈了一次，而最多会被 pop 一次，没有任何冗余操作。所以总的计算规模是和元素规模 n 成正比的，也就是 O(n) 的复杂度。)
  * 
  * 2022/11/09
+ * 2023/09/16
+ * 
+ * Similar: Q739
  */
-class StockSpanner {
+
+// Better
+class StockSpanner_01 {
     Deque<int[]> stack;
 
-    public StockSpanner() {
+    public StockSpanner_01() {
         stack = new ArrayDeque<>();
     }
-    
+
+    public int next(int price) {
+        int count = 1;
+        while (!stack.isEmpty() && stack.peek()[0] <= price) {
+            count += stack.pop()[1];
+        }
+        stack.push(new int[] { price, count });
+        return count;
+    }
+}
+
+class StockSpanner_02 {
+    Deque<int[]> stack;
+
+    public StockSpanner_02() {
+        stack = new ArrayDeque<>();
+    }
+
     public int next(int price) {
         if (stack.isEmpty()) {
-            stack.push(new int[]{price, 1});
+            stack.push(new int[] { price, 1 });
             return 1;
         }
-        
+
         int day = 1;
         while (!stack.isEmpty() && stack.peek()[0] <= price) {
             day += stack.peek()[1];
             stack.pop();
         }
-        stack.push(new int[]{price, day});
-        
+        stack.push(new int[] { price, day });
+
         return day;
     }
 }

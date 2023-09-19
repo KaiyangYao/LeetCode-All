@@ -2,14 +2,37 @@ import java.util.*;
 
 /**
  * 2023/08/29
+ * 2023/09/16
  */
 
 /**
  * Monotonic Stack
  * 
  * O(n) time | O(n) space
+ * 
+ * Similar: Q901
  */
-class Solution739 {
+
+// Suggest this version
+class Solution739_01 {
+    public int[] dailyTemperatures(int[] temperatures) {
+        int[] ans = new int[temperatures.length];
+        Deque<int[]> stack = new ArrayDeque<>();
+        stack.push(new int[] { temperatures[0], 0 });
+
+        for (int i = 1; i < temperatures.length; i++) {
+            while (!stack.isEmpty() && temperatures[i] > stack.peek()[0]) {
+                int[] prev = stack.pop();
+                ans[prev[1]] = i - prev[1];
+            }
+            stack.push(new int[] { temperatures[i], i });
+        }
+
+        return ans;
+    }
+}
+
+class Solution739_02 {
     public int[] dailyTemperatures(int[] temperatures) {
         int n = temperatures.length;
         Deque<Integer> stack = new ArrayDeque<>();
