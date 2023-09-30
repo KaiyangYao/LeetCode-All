@@ -4,7 +4,13 @@ import java.util.*;
  * Solution 1:
  * QuickSort 应用: QuickSelect
  * 2023/09/16
+ * 
+ * O(n) time | O(1) space
  */
+
+ /**
+  * 快速选择time complexity: n + n/2 + n/4 + n/8 = (1 + 1/2 + 1/4 + 1/8 + ...)n = 2n = O(n)
+  */
 class Solution215_01 {
     Random rand = new Random();
 

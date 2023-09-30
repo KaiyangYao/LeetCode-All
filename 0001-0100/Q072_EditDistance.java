@@ -1,4 +1,5 @@
 import java.util.*;
+
 /**
  * 状态：最小编辑距离
  * 选择：插入 / 删除 / 替换
@@ -6,28 +7,33 @@ import java.util.*;
  * base case：如果一个word是空，最小编辑距离是另一个word的长度
  */
 
+/**
+ * Similar: Q1143 Longest Common Subsequence
+ */
+
 // 1. 暴力递归
 class Solution072_M1 {
     public int minDistance(String word1, String word2) {
-        return dp(word1.length()-1, word2.length()-1, word1, word2);
+        return dp(word1.length() - 1, word2.length() - 1, word1, word2);
     }
+
     // 定义：dp(i, j) 返回 word1[0..i] 和 word2[0..j] 的最小编辑距离
     // 状态：最小编辑距离
     private int dp(int i, int j, String word1, String word2) {
         // base case
-        if (i == -1) return j + 1;  // i到头了，能做的只能是把j前面所有的字符都删除掉
-        if (j == -1) return i + 1;
+        if (i == -1)
+            return j + 1; // i到头了，能做的只能是把j前面所有的字符都删除掉
+        if (j == -1)
+            return i + 1;
         // 状态转移
         if (word1.charAt(i) == word2.charAt(j)) {
-            return dp(i-1, j-1, word1, word2);
+            return dp(i - 1, j - 1, word1, word2);
         } else {
             return Math.min(
-                Math.min(
-                    dp(i-1, j, word1, word2),
-                    dp(i, j-1, word1, word2)
-                ),
-                dp(i-1, j-1, word1, word2)
-            ) + 1;
+                    Math.min(
+                            dp(i - 1, j, word1, word2),
+                            dp(i, j - 1, word1, word2)),
+                    dp(i - 1, j - 1, word1, word2)) + 1;
         }
     }
 }
@@ -36,17 +42,20 @@ class Solution072_M1 {
 class Solution072_M2 {
     public int minDistance(String word1, String word2) {
         int[][] memo = new int[word1.length()][word2.length()];
-        for (int[] row: memo) {
+        for (int[] row : memo) {
             Arrays.fill(row, -1);
         }
-        return dp(word1.length()-1, word2.length()-1, word1, word2, memo);
+        return dp(word1.length() - 1, word2.length() - 1, word1, word2, memo);
     }
+
     // 定义：dp(i, j) 返回 word1[0..i] 和 word2[0..j] 的最小编辑距离
     // 状态：函数的参数
     private int dp(int i, int j, String word1, String word2, int[][] memo) {
         // base case
-        if (i == -1) return j + 1;  // i到头了，能做的只能是把j前面所有的字符都删除掉
-        if (j == -1) return i + 1;
+        if (i == -1)
+            return j + 1; // i到头了，能做的只能是把j前面所有的字符都删除掉
+        if (j == -1)
+            return i + 1;
 
         // 查备忘录
         if (memo[i][j] != -1) {
@@ -54,15 +63,13 @@ class Solution072_M2 {
         }
         // 状态转移
         if (word1.charAt(i) == word2.charAt(j)) {
-            memo[i][j] = dp(i-1, j-1, word1, word2, memo);
+            memo[i][j] = dp(i - 1, j - 1, word1, word2, memo);
         } else {
-            memo[i][j] =  Math.min(
-                Math.min(
-                    dp(i-1, j, word1, word2, memo),
-                    dp(i, j-1, word1, word2, memo)
-                ),
-                dp(i-1, j-1, word1, word2, memo)
-            ) + 1;
+            memo[i][j] = Math.min(
+                    Math.min(
+                            dp(i - 1, j, word1, word2, memo),
+                            dp(i, j - 1, word1, word2, memo)),
+                    dp(i - 1, j - 1, word1, word2, memo)) + 1;
         }
         return memo[i][j];
     }
@@ -75,7 +82,7 @@ class Solution {
     public int minDistance(String word1, String word2) {
         int m = word1.length();
         int n = word2.length();
-        int[][] dp = new int[m+1][n+1];
+        int[][] dp = new int[m + 1][n + 1];
 
         // 因为是数组，所以base case是0不是1，因此总长度要+1
         for (int i = 0; i <= m; i++) {
@@ -85,17 +92,15 @@ class Solution {
             dp[0][j] = j;
         }
 
-
         // 自底向上求解
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
-                if (word1.charAt(i-1) == word2.charAt(j-1)) {  // 注意这里索引的转化
-                    dp[i][j] = dp[i-1][j-1];
+                if (word1.charAt(i - 1) == word2.charAt(j - 1)) { // 注意这里索引的转化
+                    dp[i][j] = dp[i - 1][j - 1];
                 } else {
                     dp[i][j] = 1 + Math.min(
-                        Math.min(dp[i-1][j], dp[i][j-1]),
-                        dp[i-1][j-1]
-                    );
+                            Math.min(dp[i - 1][j], dp[i][j - 1]),
+                            dp[i - 1][j - 1]);
                 }
             }
         }

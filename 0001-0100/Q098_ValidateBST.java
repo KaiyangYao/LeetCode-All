@@ -35,6 +35,8 @@ class Solution098 {
         return isValidBST(node.left, min, (long) node.val-1) && isValidBST(node.right, (long) node.val+1, max);
     }
 
+
+    
     // V2: val <= min || val >= max
     public boolean isValidBST2(TreeNode root) {
         return isValidBST2(root, Long.MIN_VALUE, Long.MAX_VALUE);
