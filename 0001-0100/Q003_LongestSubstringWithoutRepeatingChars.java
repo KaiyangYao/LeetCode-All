@@ -17,7 +17,6 @@ class Solution003_01 {
         for (int start = 0, end = 0; end < s.length(); end++) {
             char curr = s.charAt(end);
             map.put(curr, map.getOrDefault(curr, 0) + 1);
-            // 用0,1也可以，用contains, removes也可以
             while (map.get(curr) > 1) {
                 char left = s.charAt(start);
                 map.put(left, map.get(left) - 1);

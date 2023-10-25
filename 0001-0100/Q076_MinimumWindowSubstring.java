@@ -9,38 +9,37 @@ import java.util.*;
 /**
  * O(n) time | O(26) = O(1) space
  */
-class Solution076 {
+class Solution {
     public String minWindow(String s, String t) {
-        Map<Character, Integer> sMap = new HashMap<>();
         Map<Character, Integer> tMap = new HashMap<>();
+        Map<Character, Integer> sMap = new HashMap<>();
         for (char c : t.toCharArray()) {
             tMap.put(c, tMap.getOrDefault(c, 0) + 1);
         }
-
+        String ans = "";
         int count = 0;
-        String result = "";
         for (int left = 0, right = 0; right < s.length(); right++) {
-            char curr = s.charAt(right);
-            sMap.put(curr, sMap.getOrDefault(curr, 0) + 1);
-            if (tMap.containsKey(curr) && sMap.get(curr) <= tMap.get(curr)) {
+            char rightC = s.charAt(right);
+            sMap.put(rightC, sMap.getOrDefault(rightC, 0) + 1);
+            if (tMap.containsKey(rightC) && sMap.get(rightC) <= tMap.get(rightC)) {
                 count++;
             }
-            while (left < right
-                    && (!tMap.containsKey(s.charAt(left)) || sMap.get(s.charAt(left)) > tMap.get(s.charAt(left)))) {
-                int n = sMap.get(s.charAt(left));
-                sMap.put(s.charAt(left), n - 1);
+
+            while (left < right && (!tMap.containsKey(s.charAt(left)) || sMap.get(s.charAt(left)) > tMap.get(s.charAt(left)))) {
+                char leftC = s.charAt(left);
+                sMap.put(leftC, sMap.get(leftC) - 1);
                 left++;
             }
 
             if (count == t.length()) {
-                if (result == "") {
-                    result = s.substring(left, right + 1);
+                if (ans.length() == 0) {
+                    ans = s.substring(left, right + 1);
                 } else {
-                    result = right - left + 1 < result.length() ? s.substring(left, right + 1) : result;
+                    ans = right - left + 1 < ans.length() ? s.substring(left, right + 1) : ans;
                 }
             }
         }
 
-        return result;
+        return ans;
     }
 }

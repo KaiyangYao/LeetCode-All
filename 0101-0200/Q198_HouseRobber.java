@@ -8,7 +8,38 @@
  * O(n) time
  * O(1) space
  */
-class Solution198 {
+
+// dp[i] = 第 i-1 个物品的最大值
+class Solution198_01 {
+    public int rob(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n + 1];
+        dp[1] = nums[0];
+        for (int i = 2; i < n + 1; i++) {
+            dp[i] = Math.max(dp[i - 2] + nums[i - 1], dp[i - 1]);
+        }
+        return dp[n];
+    }
+}
+
+/**
+ * O(n) time | O(1) space
+ */
+class Solution198_02 {
+    public int rob(int[] nums) {
+        int n = nums.length;
+        int prev = 0;
+        int curr = nums[0];
+        for (int i = 2; i < n + 1; i++) {
+            int temp = Math.max(prev + nums[i - 1], curr);
+            prev = curr;
+            curr = temp;
+        }
+        return curr;
+    }
+}
+
+class Solution198_03 {
     public int rob(int[] nums) {
         int n = nums.length;
         // dp[i][0]: 到第i个如果拿了这个的最大值

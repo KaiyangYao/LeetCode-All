@@ -19,7 +19,10 @@ class Solution101 {
     }
 
     public boolean isSymmetric(TreeNode root) {
-        return checkSymmetric(root, root);
+        if (root == null) {
+            return true;
+        }
+        return checkSymmetric(root.left, root.right);
     }
     
     private boolean checkSymmetric(TreeNode t1, TreeNode t2) {
