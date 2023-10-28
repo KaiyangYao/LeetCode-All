@@ -2,6 +2,7 @@ import java.util.*;
 
 /**
  * 固定长度 sliding window
+ * 递减单调栈
  * 2023/10/25
  */
 

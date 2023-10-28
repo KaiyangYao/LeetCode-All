@@ -1,13 +1,37 @@
 /**
- * DP
+ * Two Pointer
  * 
  * 2023/07/23 CN Daily
  */
 
 /**
+ * O(n) time | O(1) space
+ */
+class Solution042_01 {
+    public int trap(int[] height) {
+        int l = 0, r = height.length - 1;
+        int leftMax = height[l], rightMax = height[r];
+        int ans = 0;
+        while (l < r) {
+            if (height[l] < height[r]) {
+                l++;
+                leftMax = Math.max(leftMax, height[l]);
+                ans += leftMax - height[l];
+            } else {
+                r--;
+                rightMax = Math.max(rightMax, height[r]);
+                ans += rightMax - height[r];
+            }
+        }
+        return ans;
+    }
+}
+
+
+/**
  * O(n) time | O(n) space
  */
-class Solution042 {
+class Solution042_02 {
     public int trap(int[] height) {
         int n = height.length;
         int[] preMax = new int[n];

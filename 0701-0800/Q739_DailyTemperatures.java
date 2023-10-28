@@ -28,6 +28,12 @@ class Solution739_01 {
             stack.push(new int[] { temperatures[i], i });
         }
 
+        // 可以不加这个，因为int[] 初始化默认是 0
+        while (!stack.isEmpty()) {
+            ans[stack.peek()[1]] = 0;
+            stack.pop();
+        }
+
         return ans;
     }
 }
