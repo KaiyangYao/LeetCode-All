@@ -17,6 +17,12 @@ class Solution077 {
             result.add(new ArrayList(currList));
             return;
         }
+
+        // 剪枝
+        if ((k - currList.size() > (n - start + 1))) {
+            return;
+        }
+
         for (int i = start; i <= n; i++) {
             currList.add(i);
             dfs(i + 1, n, k, currList);

@@ -5,26 +5,30 @@
  */
 class Solution036 {
     public boolean isValidSudoku(char[][] board) {
-        int[][] rows = new int[9][10];
-        int[][] cols = new int[9][10];
-        int[][] box = new int[9][10];
+        int[][] rowsCheck = new int[9][9];
+        int[][] colsCheck = new int[9][9];
+        int[][] subboxCheck = new int[9][9];
         
         for (int r = 0; r < 9; r++) {
             for (int c = 0; c < 9; c++) {
                 if (board[r][c] == '.') continue;
+                int currNum = Integer.parseInt(String.valueOf(board[r][c])) - 1;
                 
-                int currNum = Integer.parseInt(String.valueOf(board[r][c]));
-                
-                if (rows[r][currNum] == 1 || cols[c][currNum] == 1 || box[c/3 + r/3*3][currNum] == 1) {
-                    return false;    
+                if (! (checkValidity(rowsCheck, r, currNum) && checkValidity(colsCheck, c, currNum) && checkValidity(subboxCheck, r/3 + c/3*3, currNum)) ) {
+                    return false;
                 }
-                
-                rows[r][currNum] = 1;
-                cols[c][currNum] = 1;
-                box[c/3 + r/3*3][currNum] = 1;
             }
         }
         
+        return true;
+    }
+    
+    private boolean checkValidity(int[][] board, int r, int c) {
+        if (board[r][c] == 1) {
+            return false;
+        } else {
+            board[r][c] = 1;
+        }
         return true;
     }
 }
