@@ -22,10 +22,26 @@ class Solution198_01 {
     }
 }
 
+class Solution198_02 {
+    public int rob(int[] nums) {
+        int n = nums.length;
+        if (n == 1) {
+            return nums[0];
+        }
+        int[] dp = new int[n];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < dp.length; i++) {
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+        }
+        return dp[n - 1];
+    }
+}
+
 /**
  * O(n) time | O(1) space
  */
-class Solution198_02 {
+class Solution198_03 {
     public int rob(int[] nums) {
         int n = nums.length;
         int prev = 0;
@@ -39,7 +55,10 @@ class Solution198_02 {
     }
 }
 
-class Solution198_03 {
+/**
+ * O(n) time | O(n) space
+ */
+class Solution198_04 {
     public int rob(int[] nums) {
         int n = nums.length;
         // dp[i][0]: 到第i个如果拿了这个的最大值
