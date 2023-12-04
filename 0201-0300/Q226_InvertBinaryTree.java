@@ -5,8 +5,25 @@
  * 
  * 2023/01/29
  */
+class Solution226_01 {
+    public TreeNode invertTree(TreeNode root) {
+        return doInvert(root);
+    }
 
-class Solution226 {
+    private TreeNode doInvert(TreeNode root) {
+        if (root == null) {
+            return root;
+        }
+        TreeNode left = doInvert(root.left);
+        TreeNode right = doInvert(root.right);
+        root.left = right;
+        root.right = left;
+        return root;
+    }
+}
+
+
+class Solution226_02 {
     public class TreeNode {
         int val;
         TreeNode left;
