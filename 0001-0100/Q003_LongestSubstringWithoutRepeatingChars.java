@@ -4,7 +4,7 @@ import java.util.*;
  * Sliding window w/ Hashmap
  * 
  * O(n) time  [虽然有两层循环，但每个字符在哈希表中最多只会被插入和删除一次，复杂度为 O(n)]
- * O(n) space
+ * O(x) space (x = s里出现的不同的字母数)
  * 
  * 2023/02/03
  * 
