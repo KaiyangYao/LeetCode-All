@@ -3,10 +3,27 @@
  * 2023/09/10
  */
 
+class Solution162_01 {
+    public int findPeakElement(int[] nums) {
+        int l = 0, r = nums.length - 2;
+
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] < nums[mid + 1]) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+
+        return r + 1;
+    }
+}
+
 /**
  * O(log n) time | O(1) space
  */
-class Solution162_01 {
+class Solution162_02 {
     public int findPeakElement(int[] nums) {
         int left = 0, right = nums.length - 1;
         while (left <= right) {
@@ -30,7 +47,7 @@ class Solution162_01 {
     }
 }
 
-class Solution162_02 {
+class Solution162_03 {
     public int findPeakElement(int[] nums) {
         int n = nums.length;
         int left = 0, right = n - 1;
