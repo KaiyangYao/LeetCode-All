@@ -1,5 +1,8 @@
 /**
+ * Reverse Linked List
+ * 
  * 2023/07/10
+ * 2024/09/18
  */
 
  /**
@@ -36,7 +39,7 @@ class Solution445 {
     }
 
     private ListNode addTwoNums(ListNode l1, ListNode l2) {
-        ListNode head = new ListNode(-1);
+        ListNode head = new ListNode();
         ListNode dummy = head;
         int carry = 0;
 

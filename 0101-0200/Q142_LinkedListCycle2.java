@@ -10,6 +10,7 @@
    - 从head开始走a步 (head和slow相交时候)
  * 
  * 2022/11/07
+ * 2024/09/18
  */
 class Solution142 {
     class ListNode {

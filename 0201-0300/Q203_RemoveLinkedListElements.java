@@ -4,6 +4,7 @@
  * O(n) time | O(1) space
  * 
  * 2022/11/09
+ * 2024/09/19
  */
 class Solution203 {
     public class ListNode {
@@ -15,10 +16,10 @@ class Solution203 {
     }
 
     public ListNode removeElements(ListNode head, int val) {
-        ListNode pre = new ListNode(0);
-        pre.next = head;
-        ListNode curr = pre;
-        
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+
+        ListNode curr = dummy;
         while (curr.next != null) {
             if (curr.next.val == val) {
                 curr.next = curr.next.next;
@@ -26,7 +27,7 @@ class Solution203 {
                 curr = curr.next;
             }
         }
-        
-        return pre.next;
+
+        return dummy.next;
     }
 }
